@@ -22,7 +22,7 @@ const Datastore = require('@google-cloud/datastore');
 var database = require("botbuilder-storage-google-cloud-datastore");
 
 const ds = Datastore({
-  projectId: 'appgg-207107'
+  projectId: config.projectId
 });
 const kind = 'botState';
 var client = new database.GDatastoreBotStorage(ds, { kind: kind });
