@@ -16,8 +16,20 @@ var connector = new botbuilder_linebot_connector_1.LineConnector({
   channelSecret: process.env.channelSecret || config.channelSecret,
   channelAccessToken: process.env.channelAccessToken || config.channelAccessToken
 });
+
+
+const Datastore = require('@google-cloud/datastore');
+var database = require("botbuilder-storage-google-cloud-datastore");
+
+const ds = Datastore({
+  projectId: 'appgg-207107'
+});
+const kind = 'botState';
+var client = new database.GDatastoreBotStorage(ds, { kind: kind });
+
+
 var bot = new builder.UniversalBot(connector)
-// .set("storage", client);
+  .set("storage", client);
 
 
 bot.dialog("/", [s => {
